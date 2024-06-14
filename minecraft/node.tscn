@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjhd1dara4cg2"]
+
+[ext_resource type="Script" path="res://minecraft/плита 1.gd" id="1_ikvvv"]
+[ext_resource type="PackedScene" uid="uid://cbl83xfwimvg1" path="res://minecraft/p_1.tscn" id="2_87f2i"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h7fxg"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_xl6dd"]
+sky_material = SubResource("ProceduralSkyMaterial_h7fxg")
+
+[sub_resource type="Environment" id="Environment_ril0y"]
+background_mode = 2
+sky = SubResource("Sky_xl6dd")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_cxgxo"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7egff"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ril0y")
+
+[node name="плита 1" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.28736, 0, 0, 0, 0.542148, 0, 0, 0, 3.28736, -0.0972534, 0.646798, -0.00381148)
+mesh = SubResource("BoxMesh_cxgxo")
+script = ExtResource("1_ikvvv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="плита 1"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="плита 1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7egff")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="p1" parent="." instance=ExtResource("2_87f2i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.517643, 1.76268, 0.195938)
+
+[node name="плита 2" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.28736, 0, 0, 0, 0.542148, 0, 0, 0, 3.28736, 3.53275, 0.646798, -0.00381148)
+mesh = SubResource("BoxMesh_cxgxo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="плита 2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="плита 2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7egff")
+
+[node name="плита 3" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.28736, 0, 0, 0, 0.542148, 0, 0, 0, 3.28736, -0.0972534, 0.646798, -3.63076)
+mesh = SubResource("BoxMesh_cxgxo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="плита 3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="плита 3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7egff")
+
+[node name="плита 4" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.28736, 0, 0, 0, 0.542148, 0, 0, 0, 3.28736, -3.61769, 0.646798, -0.00381148)
+mesh = SubResource("BoxMesh_cxgxo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="плита 4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="плита 4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7egff")
+
+[node name="плита 5" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.28736, 0, 0, 0, 0.542148, 0, 0, 0, 3.28736, -0.110148, 0.646798, 3.57476)
+mesh = SubResource("BoxMesh_cxgxo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="плита 5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="плита 5/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_7egff")
