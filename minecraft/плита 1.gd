@@ -1,11 +1,11 @@
-extends MeshInstance3D
+extends RigidBody3D
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	body_entered.connect(handle_body_entered)
+	body_exited.connect(handle_body_exited)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func handle_body_entered(p_1):
+	p_1.enable_interaction(self)
+	print("hello")
+func handle_body_exited(p_1):
+	p_1.disable_interaction()

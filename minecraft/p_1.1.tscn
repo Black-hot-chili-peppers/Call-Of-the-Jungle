@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bggfp4rp6t6og"]
+
+[ext_resource type="Script" path="res://minecraft/p1.gd" id="1_krb6d"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6vbxj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t2vxm"]
+
+[node name="p1" type="RigidBody3D"]
+lock_rotation = true
+script = ExtResource("1_krb6d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_6vbxj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_t2vxm")
+
+[node name="TwistPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="PitchPivot" type="Node3D" parent="TwistPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)

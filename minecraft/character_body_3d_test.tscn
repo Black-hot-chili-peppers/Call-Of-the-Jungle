@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://daq0fs7sksqsr"]
+
+[ext_resource type="Script" path="res://minecraft/player_experim.gd" id="1_vjuxf"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lrvcf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hgx1q"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_vjuxf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_lrvcf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_hgx1q")
+
+[node name="TwistPivot" type="Node3D" parent="."]
+
+[node name="PitchPivot" type="Node3D" parent="TwistPivot"]
+
+[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
