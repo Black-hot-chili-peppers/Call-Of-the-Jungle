@@ -2,7 +2,7 @@ extends Node
 
 var score
 @export var health :int = 3
-# Called when the node enters the scene tree for the first time.
+@export var death :int = 1
 func _ready():
 	score = 0
 
@@ -15,3 +15,7 @@ func _process(delta):
 func _on_camera_get_points(points):
 	score += points
 	print(score)
+
+func _on_floor_fruit_touched_floor():
+	health -= death
+	print(health)

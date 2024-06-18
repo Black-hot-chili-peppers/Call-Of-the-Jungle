@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b02aon2v2vodn"]
+
+[ext_resource type="ArrayMesh" uid="uid://yrv43j00v65j" path="res://StopBananLevel/banana.obj" id="2_hbsnd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3ph0a"]
+rough = true
+absorbent = true
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4i0gp"]
+height = 12.747
+radius = 1.434
+
+[node name="Banana" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_3ph0a")
+continuous_cd = true
+max_contacts_reported = 100
+contact_monitor = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.0423365, -0.0788341, -0.577681, -0.587702, -0.012318, 0.0437768, -0.017282, 0.612017, -0.0735302, 0.0788231, -0.0660686, 0.482115)
+shape = SubResource("CylinderShape3D_4i0gp")
+
+[node name="Banana" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(-0.0334342, -0.0657146, -0.997278, 0.999441, -0.00219835, -0.0333619, -2.98023e-08, -0.997836, 0.0657514, 0.324879, -4.04664, 2.77651)
+mesh = ExtResource("2_hbsnd")
+skeleton = NodePath("../../..")
