@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://yrv43j00v65j"
+path="res://.godot/imported/banana.obj-26aefecadc41e1f2c03c9b086fd3dcc1.mesh"
+
+[deps]
+
+files=["res://.godot/imported/banana.obj-26aefecadc41e1f2c03c9b086fd3dcc1.mesh"]
+
+source_file="res://StopBananLevel/banana.obj"
+dest_files=["res://.godot/imported/banana.obj-26aefecadc41e1f2c03c9b086fd3dcc1.mesh", "res://.godot/imported/banana.obj-26aefecadc41e1f2c03c9b086fd3dcc1.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
