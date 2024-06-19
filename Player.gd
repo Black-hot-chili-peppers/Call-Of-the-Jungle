@@ -5,6 +5,8 @@ signal hit
 @export var speed = 200
 var screen_size
 var target_velocity = Vector2.ZERO
+var is_game_ended:bool = false
+@onready var Text = $"../WinText"
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -21,23 +23,25 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_up"):
 		target_velocity.y -= 1
 
-	if target_velocity.length() > 0:
-		target_velocity = target_velocity.normalized() * speed
-		$AnimatedSprite2D.play()
-	else:
-		$AnimatedSprite2D.stop()
+	if !is_game_ended:
+		if target_velocity.length() > 0:
+			target_velocity = target_velocity.normalized() * speed
+			$AnimatedSprite2D.play()
+		else:
+			$AnimatedSprite2D.stop()
 
 	velocity = target_velocity
 	move_and_slide()
 	# position = position.clamp(Vector2.ZERO, screen_size)
 	
-	if velocity.x != 0:
-		$AnimatedSprite2D.animation = "right"
-		$AnimatedSprite2D.flip_v = false
-		$AnimatedSprite2D.flip_h = velocity.x < 0
-	elif velocity.y != 0:
-		$AnimatedSprite2D.animation = "up"
-		$AnimatedSprite2D.flip_v = velocity.y > 0
+	if !is_game_ended:
+		if velocity.x != 0:
+			$AnimatedSprite2D.animation = "right"
+			$AnimatedSprite2D.flip_v = false
+			$AnimatedSprite2D.flip_h = velocity.x < 0
+		elif velocity.y != 0:
+			$AnimatedSprite2D.animation = "up"
+			$AnimatedSprite2D.flip_v = velocity.y > 0
 
 
 	
@@ -46,3 +50,10 @@ func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+
+
+func _on_area_2d_body_entered(body):
+	print("win")
+	Text.visible = true
+	Engine.time_scale = 0
+	is_game_ended = true
