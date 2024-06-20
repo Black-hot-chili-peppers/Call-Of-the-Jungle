@@ -11,6 +11,7 @@ var is_game_ended:bool = false
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	$Camera2D/Container/Label.text = str(0)
 
 func _walk():
 	await get_tree().create_timer(0.1).timeout
@@ -37,7 +38,6 @@ func _physics_process(delta):
 			WalkSound.stop()
 		else:
 			$AnimatedSprite2D.stop()
-
 	velocity = target_velocity
 	move_and_slide()
 	# position = position.clamp(Vector2.ZERO, screen_size)
@@ -64,3 +64,7 @@ func _on_area_2d_body_entered(body):
 	Text.visible = true
 	Engine.time_scale = 0
 	is_game_ended = true
+
+func _on_shekel_body_entered(body):
+	$Camera2D/Container/Label.text = ($Camersa2D/Container/Label.text) + 1
+	$"../Shekel".queue_free()
