@@ -11,13 +11,13 @@ var is_game_ended:bool = false
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	$Camera2D/Container/Label.text = str(0)
+	$Camera2D/Control/Label.text = str(0)
 
 func _walk():
 	await get_tree().create_timer(0.1).timeout
 	$"../AudioStreamPlayer".playing = true
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	target_velocity = Vector2.ZERO
 	 # The player's movement vector.
 	if Input.is_action_pressed("move_right"):
@@ -47,9 +47,11 @@ func _physics_process(delta):
 			$AnimatedSprite2D.animation = "right"
 			$AnimatedSprite2D.flip_v = false
 			$AnimatedSprite2D.flip_h = velocity.x < 0
-		elif velocity.y != 0:
+		elif velocity.y < 0:
 			$AnimatedSprite2D.animation = "up"
-			$AnimatedSprite2D.flip_v = velocity.y > 0
+		if velocity.y > 0:
+			$AnimatedSprite2D.animation = "down"
+
 
 
 	# Replace with function body.
@@ -59,12 +61,12 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 
 
-func _on_area_2d_body_entered(body):
+func _on_area_2d_body_entered(_body):
 	print("win")
 	Text.visible = true
 	Engine.time_scale = 0
 	is_game_ended = true
 
-func _on_shekel_body_entered(body):
-	$Camera2D/Container/Label.text = ($Camersa2D/Container/Label.text) + 1
+func _on_shekel_body_entered(_body):
+	$Camera2D/Control/Label.text = "1"
 	$"../Shekel".queue_free()
